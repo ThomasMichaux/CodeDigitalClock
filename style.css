@@ -1,0 +1,243 @@
+/* 
+ * DESIGN SYSTEM - DARK MODE
+ * Palette: #000000 (Background), #ffffff (Text), #69BE28 (Accent)
+ */
+:root {
+    --color-bg: #000000;
+    --color-text-main: #ffffff;
+    --color-text-muted: #888888; /* Muted gray for secondary info */
+    --color-accent: #69BE28;      
+    --color-card-bg: #1a1a1a;    
+    --color-border: #333333;
+    
+    --spacing-xs: 8px;
+    --spacing-s: 16px;
+    --spacing-m: 24px;
+    --spacing-l: 32px;
+    --spacing-xl: 48px;
+
+    --font-family-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    --shadow-subtle: 0 4px 12px rgba(255, 255, 255, 0.03);
+    --radius-md: 16px;
+}
+
+/* RESET & BASE */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-family-body);
+    line-height: 1.2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* LAYOUT CONTAINER */
+.app-container {
+    width: 100%;
+    max-width: 800px;
+    padding: var(--spacing-m);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-l);
+    text-align: center;
+}
+
+/* ACCESSIBILITY: Focus */
+*:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* SECTION: TIME */
+.time-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.clock-display {
+    font-size: clamp(3.5rem, 14vw, 8rem);
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--color-text-main);
+    font-variant-numeric: tabular-nums;
+}
+
+.seconds-indicator {
+    color: var(--color-accent);
+}
+
+/* SECTION: DATE - REVISED UX */
+.date-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: var(--spacing-xs);
+}
+
+.date-main {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: 600;
+    color: var(--color-text-main);
+    letter-spacing: -0.5px;
+}
+
+.date-secondary {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.date-separator {
+    opacity: 0.5;
+    font-size: 0.8em;
+}
+
+/* SECTION: INFO GRID */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: var(--spacing-m);
+    width: 100%;
+    margin-top: var(--spacing-s);
+    max-width: 600px;
+}
+
+/* CARDS */
+.card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-s);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-height: 85px;
+    cursor: default;
+}
+
+.card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-subtle);
+}
+
+.icon-box {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-text-main);
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.icon-pulsing {
+    animation: pulse-ring 2s infinite ease-in-out;
+    color: var(--color-accent);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+    overflow: hidden;
+    text-align: left;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.temp-high {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+    white-space: nowrap;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* UTILITY: LOADING STATE */
+.skeleton {
+    background-color: #2a2a2a;
+    color: transparent;
+    border-radius: 4px;
+    animation: pulse-bg 1.5s infinite;
+    display: inline-block;
+    width: 100%;
+}
+
+@keyframes pulse-bg {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* UTILITY: ERROR MESSAGE */
+.error-msg {
+    font-size: 0.875rem;
+    color: #ff6b6b;
+    display: none;
+    text-align: center;
+    margin-top: var(--spacing-s);
+}
+
+.app-footer {
+    margin-top: auto;
+    padding: var(--spacing-s);
+    font-size: 0.75rem;
+    color: #555;
+    text-align: center;
+    width: 100%;
+}
