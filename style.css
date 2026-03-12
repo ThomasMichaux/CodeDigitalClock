@@ -1,11 +1,7 @@
-/* 
- * DESIGN SYSTEM - DARK MODE
- * Palette: #000000 (Background), #ffffff (Text), #69BE28 (Accent)
- */
 :root {
     --color-bg: #000000;
     --color-text-main: #ffffff;
-    --color-text-muted: #888888; /* Muted gray for secondary info */
+    --color-text-muted: #888888;
     --color-accent: #69BE28;      
     --color-card-bg: #1a1a1a;    
     --color-border: #333333;
@@ -22,7 +18,6 @@
     --radius-md: 16px;
 }
 
-/* RESET & BASE */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -30,60 +25,56 @@
 }
 
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text-main);
-    font-family: var(--font-family-body);
-    line-height: 1.2;
-    min-height: 100vh;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: var(--font-family-body);
+    line-height: 1.2;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
     user-select: none;
-    -webkit-tap-highlight-color: transparent;
 }
 
-/* LAYOUT CONTAINER */
 .app-container {
+    display: flex;
     width: 100%;
     max-width: 800px;
-    padding: var(--spacing-m);
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-l);
+    padding: var(--spacing-m);
     text-align: center;
 }
 
-/* ACCESSIBILITY: Focus */
 *:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
 
-/* SECTION: TIME */
 .time-section {
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
 .clock-display {
     font-size: clamp(3.5rem, 14vw, 8rem);
     font-weight: 700;
+    font-variant-numeric: tabular-nums;
     letter-spacing: -2px;
     line-height: 1;
     color: var(--color-text-main);
-    font-variant-numeric: tabular-nums;
 }
 
 .seconds-indicator {
     color: var(--color-accent);
 }
 
-/* SECTION: DATE - REVISED UX */
 .date-display {
     display: flex;
     flex-direction: column;
@@ -101,12 +92,12 @@ body {
 }
 
 .date-secondary {
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    font-weight: 400;
-    color: var(--color-text-muted);
     display: flex;
     align-items: center;
     gap: 12px;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    color: var(--color-text-muted);
 }
 
 .date-separator {
@@ -114,29 +105,27 @@ body {
     font-size: 0.8em;
 }
 
-/* SECTION: INFO GRID */
 .info-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-m);
     width: 100%;
-    margin-top: var(--spacing-s);
     max-width: 600px;
+    margin-top: var(--spacing-s);
 }
 
-/* CARDS */
 .card {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: var(--spacing-s);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     min-height: 85px;
+    padding: 20px;
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     cursor: default;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -145,11 +134,11 @@ body {
 }
 
 .icon-box {
-    width: 44px;
-    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
     color: var(--color-text-main);
 }
@@ -177,29 +166,29 @@ body {
 
 .label {
     font-size: 0.8rem;
-    color: var(--color-text-muted);
-    margin-bottom: 2px;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
 }
 
 .value {
+    max-width: 100%;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--color-text-main);
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
+    color: var(--color-text-main);
+    overflow: hidden;
 }
 
 .temp-high {
     font-size: 0.8rem;
-    color: var(--color-text-muted);
     font-weight: 400;
-    margin-left: 4px;
+    color: var(--color-text-muted);
     white-space: nowrap;
+    margin-left: 4px;
 }
 
 svg {
@@ -208,7 +197,6 @@ svg {
     display: block;
 }
 
-/* UTILITY: LOADING STATE */
 .skeleton {
     background-color: #2a2a2a;
     color: transparent;
@@ -224,7 +212,6 @@ svg {
     100% { opacity: 1; }
 }
 
-/* UTILITY: ERROR MESSAGE */
 .error-msg {
     font-size: 0.875rem;
     color: #ff6b6b;
