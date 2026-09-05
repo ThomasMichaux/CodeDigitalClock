@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="description"
+        content="A high-contrast digital clock with date, location, and weather information, adapting to light and dark themes.">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2369BE28' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+    <link rel="preconnect" href="https://nominatim.openstreetmap.org" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <title>Digital Clock &amp; Weather</title>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="visually-hidden">
+        <h1>Digital Clock &amp; Weather</h1>
+    </header>
+
+    <main id="main-content" class="app-container" tabindex="-1">
+        <noscript>
+            <p class="error-msg">JavaScript is required to show the current time, date and weather.</p>
+        </noscript>
+
+        <section class="time-section" aria-labelledby="time-heading">
+            <h2 id="time-heading" class="visually-hidden">Current Time</h2>
+            <div class="clock-display" role="timer" aria-label="Current time" aria-atomic="true"><time data-time
+                    datetime="00:00:00">00:00</time><span class="seconds-indicator" aria-hidden="true">:00</span></div>
+        </section>
+
+        <section aria-labelledby="date-heading">
+            <h2 id="date-heading" class="visually-hidden">Current Date</h2>
+            <div data-date class="date-display" role="status" aria-atomic="true" aria-busy="true">
+                <span class="date-main skeleton">Loading Date</span>
+                <span class="date-secondary skeleton">Loading Context</span>
+            </div>
+        </section>
+
+        <section class="info-cards" aria-labelledby="info-heading">
+            <h2 id="info-heading" class="visually-hidden">Location and Weather Information</h2>
+
+            <article class="card">
+                <div class="icon-box" data-loc-icon-box>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <span class="label">Location</span>
+                    <span data-location class="value skeleton" aria-busy="true">Locating...</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="icon-box">
+                    <div data-weather-icon-container>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <span class="label">Weather</span>
+                    <div data-weather-value class="value skeleton" aria-busy="true">
+                        <span data-temp>--</span>°C<span data-weather-desc class="weather-desc">Loading...</span>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <div data-error-container class="error-msg" role="alert" hidden></div>
+    </main>
+
+    <footer class="app-footer">
+        <p>Weather data by Open-Meteo &middot; Location data &copy; OpenStreetMap contributors</p>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
